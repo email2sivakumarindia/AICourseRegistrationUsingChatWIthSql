@@ -1,7 +1,7 @@
-streamlit==1.33.0
-langchain==0.1.12
-langchain-community==0.0.28
+streamlit
+langchain
+langchain-community
 langchain-core
 langchain-groq
 groq
-mysql-connector-python==8.3.0
+mysql-connector-python
