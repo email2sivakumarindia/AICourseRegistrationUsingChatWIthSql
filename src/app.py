@@ -7,21 +7,28 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 import streamlit as st
+from urllib.parse import quote_plus  # Correct import statement
+import requests
 
 def init_database(user: str, password: str, host: str, port: str, database: str) -> SQLDatabase:
-  db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
+  #db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
+  password = "Welcome@1"  # Example password with special characters
+  encoded_password = quote_plus(password)  # Encodes '@' -> '%40', '!' -> '%21'
+
+  db_uri = f"mysql+mysqlconnector://root:{encoded_password}@localhost:3306/testsqlai"
+  #db_uri = "mysql+mysqlconnector://root:Welcome@123@localhost:3306/mydatabase"
   return SQLDatabase.from_uri(db_uri)
 
 def get_sql_chain(db):
   template = """
-    You are a data analyst at a company. You are interacting with a user who is asking you questions about the company's database.
-    Based on the table schema below, write a SQL query that would answer the user's question. Take the conversation history into account.
+    You are a course registration assitant in a conmpany. You are interacting with a user who is asking you questions about the course and registration details.
+    Based on the table schema below, write a SQL query that would answer the user's question also assit registration process. Take the conversation history into account.
     
     <SCHEMA>{schema}</SCHEMA>
     
     Conversation History: {chat_history}
     
-    Write only the SQL query and nothing else. Do not wrap the SQL query in any other text, not even backticks.
+    Write only the SQL query and nothing else. Also check for all mandatory field value entered by user.Do not wrap the SQL query in any other text, not even backticks.
     
     For example:
     Question: which 3 artists have the most tracks?
@@ -38,7 +45,7 @@ def get_sql_chain(db):
   prompt = ChatPromptTemplate.from_template(template)
   
   # llm = ChatOpenAI(model="gpt-4-0125-preview")
-  llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
+  llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
   
   def get_schema(_):
     return db.get_table_info()
@@ -54,19 +61,20 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
   sql_chain = get_sql_chain(db)
   
   template = """
-    You are a data analyst at a company. You are interacting with a user who is asking you questions about the company's database.
-    Based on the table schema below, question, sql query, and sql response, write a natural language response.
+    You are a course registration assistant at a company. You are interacting with a user who is asking you questions about the list of courses available and to register for the course.
+    Based on the table schema below, question, sql query, and sql response, write a natural language response. Use indian rupees and timezone . Also do not show any computer or sql error , instead show I am not able to understand please clarify
+    Show initially all courses available to the user. Also assist user to register into the course by getting all mandatory fields in the registration table. Get course id from course name, do not ask user . Also validate course currently running and maximum number is not reached
     <SCHEMA>{schema}</SCHEMA>
 
     Conversation History: {chat_history}
     SQL Query: <SQL>{query}</SQL>
     User question: {question}
     SQL Response: {response}"""
-  
+
   prompt = ChatPromptTemplate.from_template(template)
   
-  # llm = ChatOpenAI(model="gpt-4-0125-preview")
-  llm = ChatGroq(model="mixtral-8x7b-32768", temperature=0)
+  #llm = ChatOpenAI(model="gpt-4-0125-preview")
+  llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
   
   chain = (
     RunnablePassthrough.assign(query=sql_chain).assign(
@@ -86,37 +94,19 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
   
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
-      AIMessage(content="Hello! I'm a SQL assistant. Ask me anything about your database."),
+      AIMessage(content="Hello! I'm a AI Course Registration Assistatnt. Ask me anything about the course."),
     ]
 
 load_dotenv()
 
-st.set_page_config(page_title="Chat with MySQL", page_icon=":speech_balloon:")
+st.set_page_config(page_title="AI Course Registration Assitant", page_icon=":speech_balloon:")
 
-st.title("Chat with MySQL")
+st.title("AI Course Registration Assitant")
 
-with st.sidebar:
-    st.subheader("Settings")
-    st.write("This is a simple chat application using MySQL. Connect to the database and start chatting.")
-    
-    st.text_input("Host", value="localhost", key="Host")
-    st.text_input("Port", value="3306", key="Port")
-    st.text_input("User", value="root", key="User")
-    st.text_input("Password", type="password", value="admin", key="Password")
-    st.text_input("Database", value="Chinook", key="Database")
-    
-    if st.button("Connect"):
-        with st.spinner("Connecting to database..."):
-            db = init_database(
-                st.session_state["User"],
-                st.session_state["Password"],
-                st.session_state["Host"],
-                st.session_state["Port"],
-                st.session_state["Database"]
-            )
-            st.session_state.db = db
-            st.success("Connected to database!")
-    
+db = init_database('root','Welcome@1','localhost','3306','courses')
+
+st.session_state.db = db
+
 for message in st.session_state.chat_history:
     if isinstance(message, AIMessage):
         with st.chat_message("AI"):
