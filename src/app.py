@@ -7,18 +7,10 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 import streamlit as st
-from urllib.parse import quote_plus  # Correct import statement
-import requests
 import homepage
+import database
 
-def init_database(user: str, password: str, host: str, port: str, database: str) -> SQLDatabase:
-  #db_uri = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
-  password = "Welcome@1"  # Example password with special characters
-  encoded_password = quote_plus(password)  # Encodes '@' -> '%40', '!' -> '%21'
 
-  db_uri = f"mysql+mysqlconnector://root:{encoded_password}@localhost:3306/testsqlai"
-  #db_uri = "mysql+mysqlconnector://root:Welcome@123@localhost:3306/mydatabase"
-  return SQLDatabase.from_uri(db_uri)
 
 def get_sql_chain(db):
   template = """
@@ -105,7 +97,7 @@ homepage.load_static_homepage()
 
 st.title("Chat with our AI Assistant to Register ")
 
-db = init_database('root','Welcome@1','localhost','3306','courses')
+db = database.init_database('root','Welcome@1','localhost','3306','courses')
 
 st.session_state.db = db
 
