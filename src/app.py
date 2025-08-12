@@ -14,8 +14,10 @@ import database
 
 def get_sql_chain(db):
   template = """
-    You are a course registration assistant in a company. You are interacting with a user who is asking you questions about the course and registration details.
-    Based on the table schema below, write a SQL query that would answer the user's question also assist registration process. Take the conversation history into account.
+    You are a course registration assistant in a company. 
+    You are interacting with a user who is asking you questions about the courses and registration details.
+    Based on the table schema below, write a SQL query that would answer the user's question also assist registration process. 
+    Take the conversation history into account.
     
     <SCHEMA>{schema}</SCHEMA>
     
@@ -55,9 +57,12 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
   
   template = """
     You are a course registration assistant at a company. You are interacting with a user who is asking you questions about the list of courses available and to register for the course.
-    First all available courses from courses table if currently running with details.
-    Based on the table schema below, question, sql query, and sql response, write a natural language response. Use indian rupees and timezone .
-    Assist user to register into the course by getting all mandatory fields one after another from the registration table one by one. Also validate course currently running.
+    Based on the table schema below, question, sql query, and sql response, write a natural language response. 
+    First list only all available courses from courses table if currently running with details.
+    Also validate course currently running.
+    Use indian rupees and timezone .
+    Assist user to register into the course by getting all mandatory fields one by one from the registration table. 
+    Just say payment link will be send to your email and your phone number , Upon payment you will be enrolled. 
     <SCHEMA>{schema}</SCHEMA>
 
     Conversation History: {chat_history}
