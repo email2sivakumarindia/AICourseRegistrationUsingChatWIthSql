@@ -21,8 +21,8 @@ def init_database(user: str, password: str, host: str, port: str, database: str)
 
 def get_sql_chain(db):
   template = """
-    You are a course registration assitant in a conmpany. You are interacting with a user who is asking you questions about the course and registration details.
-    Based on the table schema below, write a SQL query that would answer the user's question also assit registration process. Take the conversation history into account.
+    You are a course registration assistant in a conmpany. You are interacting with a user who is asking you questions about the course and registration details.
+    Based on the table schema below, write a SQL query that would answer the user's question also assist registration process. Take the conversation history into account.
     
     <SCHEMA>{schema}</SCHEMA>
     
@@ -63,7 +63,7 @@ def get_response(user_query: str, db: SQLDatabase, chat_history: list):
   template = """
     You are a course registration assistant at a company. You are interacting with a user who is asking you questions about the list of courses available and to register for the course.
     Based on the table schema below, question, sql query, and sql response, write a natural language response. Use indian rupees and timezone . Also do not show any computer or sql error , instead show I am not able to understand please clarify
-    Show initially all courses available to the user. Also assist user to register into the course by getting all mandatory fields in the registration table. Get course id from course name, do not ask user . Also validate course currently running and maximum number is not reached
+    Show initially all courses available to the user from courses table. Also assist user to register into the course by getting all mandatory fields from the registration table one by one. Also validate course currently running. Do not show any sql error.
     <SCHEMA>{schema}</SCHEMA>
 
     Conversation History: {chat_history}
@@ -99,9 +99,9 @@ if "chat_history" not in st.session_state:
 
 load_dotenv()
 
-st.set_page_config(page_title="AI Course Registration Assitant", page_icon=":speech_balloon:")
+st.set_page_config(page_title="AI Course Registration Assistant", page_icon=":speech_balloon:")
 
-st.title("AI Course Registration Assitant")
+st.title("AI Course Registration Assistant")
 
 db = init_database('root','Welcome@1','localhost','3306','courses')
 
