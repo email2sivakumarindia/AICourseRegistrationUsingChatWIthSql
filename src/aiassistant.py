@@ -4,12 +4,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_community.utilities import SQLDatabase
 from langchain_core.output_parsers import StrOutputParser
-from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 import streamlit as st
 from streamlit_modal import Modal
-
-import database
 
 class AIAssistant:
     __title__ = "AIAssistant"
