@@ -16,6 +16,9 @@ def load_static_homepage():
 
     st.title("Welcome to AI Courses - Your guide to future AI World")
 
+
+    st.header("AI Courses")
+
     st.markdown(
         """ 
         The future of AI is transformative, driving advancements in automation, healthcare, finance, and beyond, with innovations like AGI (Artificial General Intelligence), AI-powered robotics, and real-time decision-making systems reshaping industries. 
@@ -25,7 +28,7 @@ def load_static_homepage():
         """
     )
 
-    st.title("List of courses we offer")
+    st.header("List of courses we offer")
 
     tab1, tab2, tab3 = st.tabs(["AI Course Beginner", "AI Course Advanced", "AI Course Professional"])
 
@@ -163,3 +166,6 @@ def load_static_homepage():
         Professional: AI Research Scientist / AI Engineer
         """
     )
+
+    st.divider()
+

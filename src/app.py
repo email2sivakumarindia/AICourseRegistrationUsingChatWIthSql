@@ -26,7 +26,8 @@ db = database.init_database('root','Welcome@1','localhost','3306','courses')
 
 # AI Course Assistant Starts From Here
 aiassistant = aiassistant.AIAssistant("Chat with our AI Assistant to Register ", db)
-aiassistant.start_ai_registration_assitant()
+aiassistant.start_ai_registration_assistant()
 #aiassistant.start_popover()
 #aiassistant.start_model()
 #aiassistant.start_dialog()
+#aiassistant.start_sidebar()

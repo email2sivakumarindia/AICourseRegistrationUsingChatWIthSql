@@ -100,7 +100,7 @@ class AIAssistant:
         })
 
 
-    def start_ai_registration_assitant(self):
+    def start_ai_registration_assistant(self):
 
         st.title = self.title
         st.session_state.db =  self.db
@@ -129,9 +129,11 @@ class AIAssistant:
                 st.markdown(response)
                 st.session_state.chat_history.append(AIMessage(content=response))
 
+
+
     def start_popover(self):
         with st.popover("Click to Register!"):
-           self.start_ai_registration_assitant()
+           self.start_ai_registration_assistant()
 
     def start_model(self):
         modal = Modal(key="course-registration-modal", title="AI Course Registration Assistant")
@@ -141,7 +143,7 @@ class AIAssistant:
 
         if modal.is_open():
             with modal.container():
-                self.start_ai_registration_assitant()
+                self.start_ai_registration_assistant()
 
 
     def start_dialog(self):
@@ -161,3 +163,7 @@ class AIAssistant:
                 if st.button("Close"):
                     st.session_state.show_ai_dialog = False
                     st.rerun()
+
+    def start_sidebar(self):
+        with st.sidebar:
+            self.start_ai_registration_assistant()
