@@ -6,7 +6,6 @@ from langchain_community.utilities import SQLDatabase
 from langchain_core.output_parsers import StrOutputParser
 from langchain_groq import ChatGroq
 import streamlit as st
-from streamlit_modal import Modal
 
 class AIAssistant:
     __title__ = "AIAssistant"
