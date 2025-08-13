@@ -8,13 +8,13 @@ def load():
     with col1:
         st.subheader("Office Information")
         st.write("""
-        📍 123 Education Street, Tech City  
-        📞 +1 (555) 123-4567  
-        ✉️ contact@edutech.example  
+        📍 Heritagecounty, Sarjapur, Bangalore , India  
+        📞 +91 7395985467 
+        ✉️ contact@eaicourses.com 
         🕒 Mon-Fri: 9AM-5PM
         """)
 
-        st.image("https://via.placeholder.com/400x300?text=Our+Campus", width=300)
+        #st.image("https://via.placeholder.com/400x300?text=Our+Campus", width=300)
 
     with col2:
         st.subheader("Send a Message")

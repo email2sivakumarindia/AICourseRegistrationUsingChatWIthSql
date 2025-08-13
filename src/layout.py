@@ -20,7 +20,7 @@ def home():
   homepage.load()
 
 def registration(aiassistant: aiassistant.AIAssistant):
-    st.title("Course Registration")
+    st.title("Course Registration")    st.header("AI Course Registration Assistant")
     aiassistant.start_ai_registration_assistant()
     # ... (rest of registration content)
 
@@ -36,9 +36,9 @@ def load(aiassistant: aiassistant.AIAssistant):
 
     # Define pages with icons
     PAGES = {
-        "🏠 Home": "home",
-        "🤖 Registration": "registration",
-        "📧 Contact": "contact"
+        "Home": "home",
+        "Registration": "registration",
+        "Contact": "contact"
     }
 
     # Initialize session state for active page
@@ -49,8 +49,8 @@ def load(aiassistant: aiassistant.AIAssistant):
     with st.sidebar:
         st.markdown("""
         <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 style="color: white; margin: 0;">EduTech</h2>
-            <p style="color: #aaa; margin: 0;">Learn Without Limits</p>
+            <h2 style="margin: 0;">AICourses</h2>
+            <p style="margin: 0;">Drive into future tech world</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -63,7 +63,7 @@ def load(aiassistant: aiassistant.AIAssistant):
         st.markdown("<div style='margin-top: 2rem;'></div>", unsafe_allow_html=True)
         st.markdown("""
         <div style="color: #aaa; font-size: 0.8rem; text-align: center; margin-top: auto;">
-            © 2023 EduTech Platform
+            © 2025 AI Courses Ltd
         </div>
         """, unsafe_allow_html=True)
 
@@ -102,4 +102,4 @@ def load(aiassistant: aiassistant.AIAssistant):
     elif st.session_state.current_page == "contact":
         contact()
 
-    footer()
+    #footer()

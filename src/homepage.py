@@ -152,8 +152,6 @@ def load():
         """
     )
 
-    st.divider()
-
 
 
 
