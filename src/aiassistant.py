@@ -66,7 +66,6 @@ class AIAssistant:
         Also validate course currently running.
         Use indian rupees and timezone .
         Assist user to register into the course by getting all mandatory fields one by one from the registration table. 
-        Just say payment link will be send to your email and your phone number , Upon payment you will be enrolled. 
         <SCHEMA>{schema}</SCHEMA>
     
         Conversation History: {chat_history}

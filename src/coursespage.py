@@ -90,7 +90,7 @@ def display_row_in_tab(row, columns, index):
 
 
 
-def load(db: SQLDatabase):
+def load():
     st.set_page_config(page_title="Row Tab Viewer", layout="wide")
     st.title("🔍 SQL Row Explorer")
 

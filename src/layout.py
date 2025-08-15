@@ -27,9 +27,9 @@ def registration(aiassistant: aiassistant.AIAssistant):
     aiassistant.start_ai_registration_assistant()
     # ... (rest of registration content)
 
-def courses(db: SQLDatabase):
+def courses():
     st.header("Here I am loading all the course pages")
-    coursespage.load(db)
+    coursespage.load()
 
 def contact():
     st.title("Contact Us")
@@ -105,7 +105,7 @@ def load(aiassistant: aiassistant.AIAssistant,db: SQLDatabase):
     if st.session_state.current_page == "home":
         home()
     elif st.session_state.current_page == "courses":
-        courses(db)
+        courses()
     elif st.session_state.current_page == "registration":
         registration(aiassistant)
     elif st.session_state.current_page == "contact":
