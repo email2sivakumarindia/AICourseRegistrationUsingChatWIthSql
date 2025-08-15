@@ -48,16 +48,11 @@ def fetch_table_data(table_name):
 
 def display_row_in_tab(row, columns, index):
     """Display a single row in a tab"""
-    with st.expander("row[1]", expanded=index == 0):
-        col1, col2 = st.columns(2)
+    with st.expander(row["course_name"], expanded=index == 0):
 
-        with col1:
-            for col in columns:
-                st.write(f"**{col}:**", row[col])
+        for col in columns:
+            st.write(f"**{col}:**", row[col])
 
-        with col2:
-            st.subheader("Raw Data")
-            st.json(row)
 
 
 def load(db: SQLDatabase):
