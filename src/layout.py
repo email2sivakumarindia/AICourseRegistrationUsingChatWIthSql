@@ -1,8 +1,10 @@
 import streamlit as st
+from langchain_community.utilities import SQLDatabase
 from streamlit.components.v1 import html
 import homepage
 import contactpage
 import aiassistant
+import coursespage
 
 # Top page
 def header():
@@ -25,19 +27,23 @@ def registration(aiassistant: aiassistant.AIAssistant):
     aiassistant.start_ai_registration_assistant()
     # ... (rest of registration content)
 
+def courses(db: SQLDatabase):
+    st.header("Here I am loading all the course pages")
+    coursespage.load(db)
 
 def contact():
     st.title("Contact Us")
     contactpage.load()
     # ... (rest of contact page content)
 
-def load(aiassistant: aiassistant.AIAssistant):
+def load(aiassistant: aiassistant.AIAssistant,db: SQLDatabase):
     # Load pages here
     header()
 
     # Define pages with icons
     PAGES = {
         "Home": "home",
+        "Courses": "courses",
         "Registration": "registration",
         "Contact": "contact"
     }
@@ -98,6 +104,8 @@ def load(aiassistant: aiassistant.AIAssistant):
     # Page routing
     if st.session_state.current_page == "home":
         home()
+    elif st.session_state.current_page == "courses":
+        courses(db)
     elif st.session_state.current_page == "registration":
         registration(aiassistant)
     elif st.session_state.current_page == "contact":
