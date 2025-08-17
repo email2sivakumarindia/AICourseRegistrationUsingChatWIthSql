@@ -10,9 +10,9 @@ def main():
     load_dotenv()
 
     # Initiate DB
-    db = database.init_database('root', 'Welcome@1', 'localhost', '3306', 'courses')
+    db = database.init_database('root', 'Welcome@1', 'localhost', '8080', 'courses')
 
-    # Construct AI Course Assitant
+    # Construct AI Course Assistant
     aiassistant = AIAssistant("Chat with our AI Assistant to Register ", db)
 
     #aiassistant.start_ai_registration_assistant()
