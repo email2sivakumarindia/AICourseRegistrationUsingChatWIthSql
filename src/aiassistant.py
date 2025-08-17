@@ -95,7 +95,7 @@ class AIAssistant:
 
 
     def start_ai_registration_assistant(self):
-
+        st.header("AI Course Registration Assistant")
         st.title = self.title
         st.session_state.db =  self.db
         if "chat_history" not in st.session_state:
