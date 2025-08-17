@@ -8,9 +8,9 @@ def load():
     with col1:
         st.subheader("Office Information")
         st.write("""
-        📍 Heritagecounty, Sarjapur, Bangalore , India  
-        📞 +91 7395985467 
-        ✉️ contact@eaicourses.com 
+        📍 Heritagecounty, Sarjapur, Bangalore , India   \n
+        📞 +91 6362620391 \n
+        ✉️ email2sivkumarindia@gmail.com \n
         🕒 Mon-Fri: 9AM-5PM
         """)
 
@@ -21,9 +21,9 @@ def load():
         with st.form("contact_form"):
             st.text_input("Your Name")
             st.text_input("Your Email")
-            st.selectbox("Subject", ["General Inquiry", "Technical Support", "Billing"])
+            st.selectbox("Subject", ["Course Inquiry", "Technical Support", "Payment"])
             st.text_area("Message")
             if st.form_submit_button("Send Message"):
-                st.success("Message sent! We'll respond within 24 hours.")
+                st.success("Message sent! We'll respond within 24 hours. If not please contact us at email2sivakumarindia@gmail.com")
 
 

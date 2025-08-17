@@ -10,7 +10,9 @@ import coursespage
 def header():
     st.set_page_config(page_title="AI Courses", page_icon=":speech_balloon:")
     st.title("Welcome to AI Courses - Your guide to future AI World")
-    st.image("/Users/apple/Desktop/AIKickstarterCourseAI/Images/Topheader.webp", use_container_width=True)
+    #st.image("/Users/apple/Desktop/AIKickstarterCourseAI/Images/Topheader.webp", use_container_width=True)
+    url = "https://media.geeksforgeeks.org/wp-content/uploads/20240628162127/Best-courses-for-artificial-intelligence.webp"
+    st.image(url, use_container_width=True)
 
 #Footer for all pages
 def footer():
@@ -28,7 +30,7 @@ def registration(aiassistant: aiassistant.AIAssistant):
     # ... (rest of registration content)
 
 def courses():
-    st.header("Here I am loading all the course pages")
+    #st.header("Here I am loading all the course pages")
     coursespage.load()
 
 def contact():
@@ -56,8 +58,8 @@ def load(aiassistant: aiassistant.AIAssistant,db: SQLDatabase):
     with st.sidebar:
         st.markdown("""
         <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 style="margin: 0;">AICourses</h2>
-            <p style="margin: 0;">Drive into future tech world</p>
+            <h2 style="margin: 0;"></h2>
+            <p style="margin: 0;"></p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -70,7 +72,7 @@ def load(aiassistant: aiassistant.AIAssistant,db: SQLDatabase):
         st.markdown("<div style='margin-top: 2rem;'></div>", unsafe_allow_html=True)
         st.markdown("""
         <div style="color: #aaa; font-size: 0.8rem; text-align: center; margin-top: auto;">
-            © 2025 AI Courses Ltd
+            
         </div>
         """, unsafe_allow_html=True)
 

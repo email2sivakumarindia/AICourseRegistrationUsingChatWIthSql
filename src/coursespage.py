@@ -92,7 +92,6 @@ def display_row_in_tab(row, columns, index):
 
 def load():
     st.set_page_config(page_title="Row Tab Viewer", layout="wide")
-    st.title("🔍 SQL Row Explorer")
 
     # Table selection
    # table_name = st.text_input("Enter table name:")
