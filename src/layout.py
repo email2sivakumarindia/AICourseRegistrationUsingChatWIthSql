@@ -24,8 +24,6 @@ def home():
   homepage.load()
 
 def registration(aiassistant: aiassistant.AIAssistant):
-    st.title("Course Registration")
-    st.header("AI Course Registration Assistant")
     aiassistant.start_ai_registration_assistant()
     # ... (rest of registration content)
 
